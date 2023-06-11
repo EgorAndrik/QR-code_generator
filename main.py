@@ -1,8 +1,11 @@
 import sys
 import segno
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QLineEdit, QComboBox
-from PyQt6.QtGui import QPixmap, QFont
+from PyQt6.QtWidgets import \
+    QApplication, QMainWindow, QPushButton,\
+    QLabel, QVBoxLayout, QWidget,\
+    QLineEdit, QComboBox
+from PyQt6.QtGui import QPixmap, QFont, QIcon
 
 
 class MainWindow(QMainWindow):
@@ -10,11 +13,12 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("QR generator")
+        self.setWindowIcon(QIcon("Images/pythonLogo.png"))
         self.setFixedSize(QSize(550, 700))
         self.layout = QVBoxLayout()
         self.container = QWidget()
 
-        pixmap = QPixmap("QR_start.png")
+        pixmap = QPixmap("Images/QR_start.png")
         self.imgQR = QLabel()
         self.imgQR.setPixmap(pixmap)
 
@@ -68,9 +72,9 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    application = QApplication(sys.argv)
 
     window = MainWindow()
     window.show()
 
-    app.exec()
+    application.exec()
