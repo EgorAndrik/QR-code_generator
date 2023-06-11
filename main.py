@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
 
     def crearQR(self):
         qrcode = segno.make_qr(self.input.text())
-        qrcode.save("QR_code.png", dark="#09e3eb", border=2, scale=10)
+        qrcode.save("QR_code.png", dark="#0771ab", border=2, scale=10)
         pixmap = QPixmap("QR_code.png")
         self.imgQR.setPixmap(pixmap)
 
