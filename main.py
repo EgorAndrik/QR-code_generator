@@ -24,8 +24,8 @@ class MainWindow(QMainWindow):
         self.firstTitle.setFixedSize(400, 50)
 
         self.input = QLineEdit()
-        fontInput = self.input.font()  # lineedit current font
-        fontInput.setPointSize(14)  # change it's size
+        fontInput = self.input.font()
+        fontInput.setPointSize(14)
         self.input.setFont(fontInput)
         self.input.setFixedSize(400, 50)
 
