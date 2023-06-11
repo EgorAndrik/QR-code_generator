@@ -2,7 +2,7 @@ import sys
 import segno
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QLineEdit
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QFont
 
 
 class MainWindow(QMainWindow):
@@ -18,10 +18,19 @@ class MainWindow(QMainWindow):
         self.imgQR = QLabel()
         self.imgQR.setPixmap(pixmap)
 
+        self.firstTitle = QLabel("Enter link:")
+        self.firstTitle.setFont(QFont('Arial', 20))
+        self.firstTitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.firstTitle.setFixedSize(400, 50)
+
         self.input = QLineEdit()
+        fontInput = self.input.font()  # lineedit current font
+        fontInput.setPointSize(14)  # change it's size
+        self.input.setFont(fontInput)
         self.input.setFixedSize(400, 50)
 
         self.button = QPushButton("Create")
+        self.button.setStyleSheet("text-align:center; font-size: 20px")
         self.button.setCheckable(True)
         self.button.clicked.connect(self.crearQR)
         self.button.setFixedSize(100, 50)
@@ -30,6 +39,7 @@ class MainWindow(QMainWindow):
 
     def conectWidgets(self):
         self.layout.addWidget(self.imgQR, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(self.firstTitle, alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.input, alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.button, alignment=Qt.AlignmentFlag.AlignCenter)
         self.container.setLayout(self.layout)
@@ -43,9 +53,10 @@ class MainWindow(QMainWindow):
         self.imgQR.setPixmap(pixmap)
 
 
-app = QApplication(sys.argv)
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
 
-window = MainWindow()
-window.show()
+    window = MainWindow()
+    window.show()
 
-app.exec()
+    app.exec()
