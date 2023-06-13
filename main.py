@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("QR generator")
-        self.setWindowIcon(QIcon("Images/pythonLogo.png"))
+        self.setWindowIcon(QIcon("Images/logoAndreasyanEgorAndreasivich.png"))
         self.setFixedSize(QSize(550, 700))
         self.layout = QVBoxLayout()
         self.container = QWidget()
