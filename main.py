@@ -12,17 +12,26 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.creatWindow()
+
+        self.creatWidgets()
+
+        self.conectWidgets()
+
+    def creatWindow(self):
         self.setWindowTitle("QR generator")
         self.setWindowIcon(QIcon("Images/logoAndreasyanEgorAndreasivich.png"))
         self.setFixedSize(QSize(550, 700))
+
         self.layout = QVBoxLayout()
         self.container = QWidget()
 
+    def creatWidgets(self):
         pixmap = QPixmap("Images/QR_start.png")
         self.imgQR = QLabel()
         self.imgQR.setPixmap(pixmap)
 
-        self.firstTitle = QLabel("Enter link:")
+        self.firstTitle = QLabel("Enter link or text:")
         self.firstTitle.setFont(QFont('Arial', 20))
         self.firstTitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.firstTitle.setFixedSize(400, 50)
@@ -50,8 +59,6 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.crearQR)
         self.button.setFixedSize(100, 50)
 
-        self.conectWidgets()
-
     def conectWidgets(self):
         self.layout.addWidget(self.imgQR, alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.firstTitle, alignment=Qt.AlignmentFlag.AlignCenter)
@@ -64,10 +71,14 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.container)
 
     def crearQR(self):
-        sizeQR = int(self.combo.currentText())
         qrcode = segno.make_qr(self.input.text())
-        qrcode.save("QR_code.png", dark="#0771ab", border=2, scale=sizeQR)
-        pixmap = QPixmap("QR_code.png")
+        qrcode.save(
+            "Images/QR_code.png",
+            dark="#0771ab",
+            border=2,
+            scale=int(self.combo.currentText())
+        )
+        pixmap = QPixmap("Images/QR_code.png")
         self.imgQR.setPixmap(pixmap)
 
 
